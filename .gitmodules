@@ -1,3 +1,4 @@
 [submodule "paldomoa-config"]
 	path = paldomoa-config
 	url = https://github.com/deokgyun-micron/paldomoa-config.git
+  branch = main
