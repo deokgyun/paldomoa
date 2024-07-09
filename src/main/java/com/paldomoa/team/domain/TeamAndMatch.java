@@ -1,15 +1,13 @@
 package com.paldomoa.team.domain;
 
 import com.paldomoa.common.domain.BaseTimeEntity;
-import com.paldomoa.member.domain.Member;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import java.time.LocalDateTime;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,21 +17,21 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Entity
-public class Team extends BaseTimeEntity {
+public class TeamAndMatch extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
-
-    private String description;
-
-    @Enumerated(EnumType.STRING)
-    private SportType sportType;
+    private LocalDateTime joinDate;
+    private boolean isApply;
+    private boolean isAttend; // 경기 수락 후 참석 여부
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private Member member;
-    
+    @JoinColumn(name = "team_id")
+    private Team team;
+
+    @ManyToOne
+    @JoinColumn(name = "match_id")
+    private Match match;
 }

@@ -1,15 +1,14 @@
 package com.paldomoa.team.domain;
 
 import com.paldomoa.common.domain.BaseTimeEntity;
-import com.paldomoa.member.domain.Member;
+import com.paldomoa.common.domain.Location;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import java.time.LocalDateTime;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,21 +18,20 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Entity
-public class Team extends BaseTimeEntity {
+public class GameDate extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
-
+    private LocalDateTime gameDate;
     private String description;
 
-    @Enumerated(EnumType.STRING)
-    private SportType sportType;
+    @ManyToOne
+    @JoinColumn(name = "location_id")
+    private Location location;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private Member member;
-    
+    @JoinColumn(name = "team_id")
+    private Team team;
 }

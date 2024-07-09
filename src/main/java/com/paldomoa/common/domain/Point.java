@@ -1,10 +1,7 @@
-package com.paldomoa.team.domain;
+package com.paldomoa.common.domain;
 
-import com.paldomoa.common.domain.BaseTimeEntity;
 import com.paldomoa.member.domain.Member;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -19,21 +16,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Entity
-public class Team extends BaseTimeEntity {
+public class Point extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
-
-    private String description;
-
-    @Enumerated(EnumType.STRING)
-    private SportType sportType;
+    private int point;
+    private String reason;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "member_id")
     private Member member;
-    
 }

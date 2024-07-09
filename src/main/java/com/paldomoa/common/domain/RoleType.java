@@ -1,4 +1,4 @@
-package com.paldomoa.common.domain.eenum;
+package com.paldomoa.common.domain;
 
 import com.paldomoa.auth.annotation.Admin;
 import com.paldomoa.auth.annotation.Member;

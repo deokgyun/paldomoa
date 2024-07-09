@@ -1,6 +1,6 @@
 package com.paldomoa.member.domain;
 
-public enum SocialType {
+public enum Provider {
     KAKAO,
     GOOGLE,
     NAVER,

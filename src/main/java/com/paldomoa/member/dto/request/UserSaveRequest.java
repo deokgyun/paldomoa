@@ -6,7 +6,8 @@ public record UserSaveRequest(
     String nickname,
     String street,
     String city,
-    String zipcode
+    String zipcode,
+    String phone
 ) {
 
 

@@ -1,4 +1,4 @@
-package com.paldomoa.config.security;
+package com.paldomoa.common.config.security;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;

@@ -1,7 +1,7 @@
 package com.paldomoa.auth.login;
 
 import com.paldomoa.auth.annotation.Member;
-import com.paldomoa.common.exception.BusinessException;
+import com.paldomoa.common.exception.ApiException;
 import com.paldomoa.common.exception.ExceptionData;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.Objects;
@@ -27,6 +27,6 @@ public class LoginMemberResolver implements HandlerMethodArgumentResolver {
         HttpServletRequest request = webRequest.getNativeRequest(HttpServletRequest.class);
 
         return Optional.ofNullable(Objects.requireNonNull(request).getAttribute("payload"))
-            .orElseThrow(() -> new BusinessException(ExceptionData.AUTHORIZATION_SERVER_ERROR));
+            .orElseThrow(() -> new ApiException(ExceptionData.RUNTIME_EXCEPTION));
     }
 }

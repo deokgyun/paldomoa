@@ -1,6 +1,6 @@
 package com.paldomoa.auth.domain;
 
-import com.paldomoa.common.domain.eenum.RoleType;
+import com.paldomoa.common.domain.RoleType;
 import java.rmi.UnexpectedException;
 
 public class AuthPayload {
