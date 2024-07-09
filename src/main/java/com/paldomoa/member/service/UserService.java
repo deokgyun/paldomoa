@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(readOnly = true)
 @Slf4j
 @RequiredArgsConstructor
-public class MemberService {
+public class UserService {
 
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;

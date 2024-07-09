@@ -1,6 +1,6 @@
 package com.paldomoa.member.controller;
 
-import com.paldomoa.member.service.MemberService;
+import com.paldomoa.member.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/members")
 public class MemberController {
 
-    private final MemberService memberService;
+    private final UserService userService;
 
-    public MemberController(MemberService memberService) {
-        this.memberService = memberService;
+    public MemberController(UserService userService) {
+        this.userService = userService;
     }
 
 

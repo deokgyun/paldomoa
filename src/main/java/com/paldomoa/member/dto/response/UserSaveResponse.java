@@ -6,15 +6,15 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class MemberSaveResponse {
+public class UserSaveResponse {
 
     private Long id;
 
-    private MemberSaveResponse(Long id) {
+    private UserSaveResponse(Long id) {
         this.id = id;
     }
 
-    public static MemberSaveResponse from(Member member) {
-        return new MemberSaveResponse(member.getId());
+    public static UserSaveResponse from(Member member) {
+        return new UserSaveResponse(member.getId());
     }
 }

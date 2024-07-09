@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -15,6 +16,7 @@ import org.springframework.security.web.authentication.AbstractAuthenticationPro
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.util.StreamUtils;
 
+@Slf4j
 public class JsonUsernamePasswordAuthenticationFilter extends
     AbstractAuthenticationProcessingFilter {
 
@@ -42,6 +44,7 @@ public class JsonUsernamePasswordAuthenticationFilter extends
     public Authentication attemptAuthentication(HttpServletRequest request,
         HttpServletResponse response)
         throws AuthenticationException, IOException, ServletException {
+
         if (request.getContentType() == null || !request.getContentType().equals(CONTENT_TYPE)) {
             throw new AuthenticationServiceException(
                 "Authentication Content-Type not supported: " + request.getContentType());
@@ -55,7 +58,9 @@ public class JsonUsernamePasswordAuthenticationFilter extends
         String username = usernamePasswordMap.get(USERNAME_KEY);
         String password = usernamePasswordMap.get(PASSWORD_KEY);
 
-        System.out.println(username);
+        log.info("username: {}, password: {}", username, password);
+        log.info("token = {}", request.getHeader("Authorization"));
+
         UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(
             username, password);//principal 과 credentials 전달
 

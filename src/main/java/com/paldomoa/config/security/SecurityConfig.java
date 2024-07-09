@@ -5,6 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.paldomoa.auth.filter.JsonUsernamePasswordAuthenticationFilter;
 import com.paldomoa.auth.filter.LoginFailureHandler;
 import com.paldomoa.auth.filter.LoginSuccessJWTProvideHandler;
+import com.paldomoa.auth.jwt.filter.JWTFilter;
+import com.paldomoa.auth.jwt.service.JwtService;
 import com.paldomoa.auth.service.CustomUserDetailsService;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.Collections;
@@ -31,6 +33,7 @@ public class SecurityConfig {
 
     private final ObjectMapper objectMapper;
     private final CustomUserDetailsService userDetailsService;
+    private final JwtService jwtService;
 
     @Bean
     public DaoAuthenticationProvider daoAuthenticationProvider() throws Exception {
@@ -49,16 +52,16 @@ public class SecurityConfig {
 
     @Bean
     public AuthenticationManager authenticationManager()
-        throws Exception {//AuthenticationManager 등록
-        DaoAuthenticationProvider provider = daoAuthenticationProvider();//DaoAuthenticationProvider 사용
+        throws Exception {
+        DaoAuthenticationProvider provider = daoAuthenticationProvider();
         provider.setPasswordEncoder(
-            passwordEncoder());//PasswordEncoder로는 PasswordEncoderFactories.createDelegatingPasswordEncoder() 사용
+            passwordEncoder());
         return new ProviderManager(provider);
     }
 
     @Bean
     public LoginSuccessJWTProvideHandler loginSuccessJWTProvideHandler() {
-        return new LoginSuccessJWTProvideHandler();
+        return new LoginSuccessJWTProvideHandler(jwtService);
     }
 
     @Bean
@@ -87,6 +90,8 @@ public class SecurityConfig {
             .formLogin(auth -> auth.disable())
 
             .addFilterAfter(jsonUsernamePasswordLoginFilter(), LogoutFilter.class)
+            .addFilterBefore(new JWTFilter(jwtService),
+                JsonUsernamePasswordAuthenticationFilter.class)
 
             .httpBasic(auth -> auth.disable())
 
@@ -109,6 +114,8 @@ public class SecurityConfig {
                                                            config.setAllowCredentials(true);
                                                            config.setAllowedHeaders(Collections.singletonList("*"));
                                                            config.setMaxAge(3600L); //1시간
+                                                           config.setExposedHeaders(Collections.singletonList("Authorization"));
+
                                                            return config;
                                                        }
                                                    }

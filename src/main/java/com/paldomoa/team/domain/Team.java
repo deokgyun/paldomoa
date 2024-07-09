@@ -1,33 +1,39 @@
-package com.paldomoa.common.domain;
+package com.paldomoa.team.domain;
 
-
+import com.paldomoa.common.domain.BaseTimeEntity;
 import com.paldomoa.member.domain.Member;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 @Entity
-public class Sido extends BaseTimeEntity {
+public class Team extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "sido_id")
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "member_id")
-    private Member member;
+    private String name;
+
+    private String description;
+
+    @Enumerated(EnumType.STRING)
+    private SportType sportType;
 
     @ManyToOne
-    @JoinColumn(name = "sido_areas_id")
-    private SidoAreas sidoAreas;
+    @JoinColumn(name = "user_id")
+    private Member member;
+
 }

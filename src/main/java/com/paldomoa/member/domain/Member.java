@@ -3,10 +3,12 @@ package com.paldomoa.member.domain;
 import com.paldomoa.common.domain.Address;
 import com.paldomoa.common.domain.BaseTimeEntity;
 import com.paldomoa.common.domain.eenum.RoleType;
-import com.paldomoa.member.dto.request.MemberSaveRequest;
+import com.paldomoa.member.dto.request.UserSaveRequest;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -35,17 +37,26 @@ public class Member extends BaseTimeEntity {
     @Column(nullable = false, length = 30)
     private String nickname;
 
+    @Column(nullable = false, length = 13)
+    private String phone;
+
     @Embedded
     private Address address;
 
     private String imageUrl;
 
+    @Enumerated(EnumType.STRING)
     private RoleType roleType;
 
-    public Member(MemberSaveRequest request, PasswordEncoder passwordEncoder) {
+    @Enumerated(EnumType.STRING)
+    private SocialType socialType;
+
+    public Member(UserSaveRequest request, PasswordEncoder passwordEncoder) {
         this.email = request.email();
         this.password = passwordEncoder.encode(request.password());
         this.nickname = request.nickname();
         this.address = new Address(request.street(), request.city(), request.zipcode());
+        this.roleType = RoleType.ROLE_USER;
     }
+
 }
