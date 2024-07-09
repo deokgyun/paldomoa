@@ -1,16 +1,33 @@
 package com.paldomoa.common.exception;
 
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.ToString;
+import org.springframework.http.HttpStatus;
 
-@RequiredArgsConstructor
 @Getter
+@ToString
 public enum ExceptionData {
 
-    AUTHORIZATION_SERVER_ERROR(9001,"인가 관련 서버 내부의 오류입니다.",500);
+    // System Exception
+    RUNTIME_EXCEPTION(HttpStatus.BAD_REQUEST, "E0001"),
+    ACCESS_DENIED_EXCEPTION(HttpStatus.UNAUTHORIZED, "E0002"),
+    INTERNAL_SERVER_EXCEPTION(HttpStatus.INTERNAL_SERVER_ERROR, "E0003"),
+    // Custom Exception
+    SECURITY_EXCEPTION(HttpStatus.UNAUTHORIZED, "CE0001"),
+    ;
 
-    private final int code;
-    private final String message;
-    private final int statusCode;
+    private final HttpStatus status;
+    private final String code;
+    private String message;
 
+    ExceptionData(HttpStatus status, String code) {
+        this.status = status;
+        this.code = code;
+    }
+
+    ExceptionData(HttpStatus status, String code, String message) {
+        this.status = status;
+        this.code = code;
+        this.message = message;
+    }
 }
