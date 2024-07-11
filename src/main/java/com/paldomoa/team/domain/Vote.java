@@ -9,6 +9,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -16,6 +17,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Entity
+@Builder
 public class Vote extends BaseTimeEntity {
 
     @Id
@@ -23,6 +25,7 @@ public class Vote extends BaseTimeEntity {
     private Long id;
 
     private boolean isAttend;
+    private boolean isVote;
 
     @ManyToOne
     @JoinColumn(name = "game_date_id")

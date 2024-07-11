@@ -2,6 +2,7 @@ package com.paldomoa.team.domain;
 
 import com.paldomoa.common.domain.BaseTimeEntity;
 import com.paldomoa.member.domain.Member;
+import com.paldomoa.team.dto.reqeust.UpdateTeamRequest;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -12,6 +13,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -19,6 +21,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Entity
+@Builder
 public class Team extends BaseTimeEntity {
 
     @Id
@@ -35,5 +38,8 @@ public class Team extends BaseTimeEntity {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private Member member;
-    
+
+    public void updateTeam(UpdateTeamRequest request) {
+        this.description = request.description();
+    }
 }
