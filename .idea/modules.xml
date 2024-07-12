@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/backend.paldomoa.main.iml" filepath="$PROJECT_DIR$/.idea/modules/backend.paldomoa.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/paldomoa.iml" filepath="$PROJECT_DIR$/.idea/paldomoa.iml" />
+    </modules>
+  </component>
+</project>

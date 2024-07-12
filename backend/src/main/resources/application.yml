@@ -1,0 +1,55 @@
+spring:
+  thymeleaf:
+    prefix: classpath:templates/
+    check-template: true
+    suffix: .html
+    mode: HTML
+    cache: false
+
+  datasource:
+    url: jdbc:oracle:thin:@(description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1521)(host=adb.ap-chuncheon-1.oraclecloud.com))(connect_data=(service_name=gacd244e318caee_nolgugadb_high.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))
+    driver-class-name: oracle.jdbc.OracleDriver
+    username: PALDOMOA
+    password: Qlrkfekr12##
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.OracleDialect
+        show_sql: true
+        format_sql: true
+        use_sql_comments: true
+  logging:
+    level:
+      org.hibernate.SQL: DEBUG
+      org.hibernate.type: trace
+
+  jwt:
+    secret: 2863f179384e78be42ca3fc28122d90fda494f20224413886ac744a5ea2e9f3a3a36ad6004ae59ca1639836b140d9f0bfe6e0aea3ed7009f38d7d4ac5f161d79
+
+    access:
+      expiration: 900
+      header: Authorization
+
+    refresh:
+      expiration: 1209600
+      header: Authorization-refresh
+
+springdoc:
+  api-docs:
+    path: /api-docs
+    groups:
+      enabled: true
+  swagger-ui:
+    path: /swagger-ui-custom.html
+    enabled: true
+    groups-order: ASC
+    tags-sorter: alpha
+    operations-sorter: alpha
+    display-request-duration: true
+    doc-expansion: none
+  cache:
+    disabled: true
+  model-and-view-allowed: true
