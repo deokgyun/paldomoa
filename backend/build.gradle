@@ -54,7 +54,7 @@ tasks.named('test') {
 
 processResources.dependsOn('copySecret')
 tasks.register('copySecret', Copy) {
-    from './backend/paldomoa-config'
+    from './paldomoa-config'
     include "application.yml"
     into './src/main/resources'
 }
