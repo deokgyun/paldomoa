@@ -1,4 +1,3 @@
-[submodule "paldomoa-config"]
-	path = backend/paldomoa-config
+[submodule "backend/config"]
+	path = backend/config
 	url = https://github.com/deokgyun-micron/paldomoa-config.git
-  branch = main
