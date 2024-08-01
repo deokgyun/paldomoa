@@ -28,6 +28,8 @@
     // eslint-config-prettier prettier와 중복된 eslint 규칙 제거
   ],
   "rules": {
+    "react/require-default-props": "off",
+    "react/no-unused-prop-types": ["off"],
     "react/button-has-type": "off",
     "react/react-in-jsx-scope": "off",
     // react 17부턴 import 안해도돼서 기능 끔
@@ -38,7 +40,8 @@
         "extensions": [".ts", ".tsx"]
       }
     ],
-    "no-useless-catch": "off"
+    "no-useless-catch": "off",
     // 불필요한 catch 못쓰게 하는 기능 끔
+    "no-console": "off"
   }
 }

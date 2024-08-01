@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import Header from '@/components/Header'
+import Header from '@/components/header'
 import Footer from '@/components/footer'
 import React from 'react'
 
@@ -16,17 +16,17 @@ export const metadata: Metadata = {
 }
 
 export default function RootLayout({
-                                     children,
-                                   }: Readonly<{
+  children,
+}: Readonly<{
   children: React.ReactNode
 }>) {
   return (
     <html lang="en" className={inter.className}>
-    <body className="flex flex-col min-h-screen">
-    <Header />
-    <main className="flex-grow">{children}</main>
-    <Footer />
-    </body>
+      <body className="flex flex-col min-h-screen">
+        <Header />
+        <main className="flex-grow w-full max-w-7xl mx-auto ">{children}</main>
+        <Footer />
+      </body>
     </html>
   )
 }
